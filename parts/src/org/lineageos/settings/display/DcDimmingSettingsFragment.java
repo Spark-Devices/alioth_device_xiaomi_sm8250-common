@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
- *               2017-2020 The LineageOS Project
+ * Copyright (C) 2018 The LineageOS Project
  *               2022-2023 VoidUI Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,29 +15,23 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings;
+package org.lineageos.settings.display;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.os.SystemProperties;
-import android.util.Log;
-import androidx.preference.PreferenceManager;
+import android.os.Bundle;
+import androidx.preference.Preference;
+import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
 
-import org.lineageos.settings.dirac.DiracUtils;
-import org.lineageos.settings.doze.DozeUtils;
-import org.lineageos.settings.thermal.ThermalUtils;
-import org.lineageos.settings.refreshrate.RefreshUtils;
+import org.lineageos.settings.R;
 import org.lineageos.settings.utils.FileUtils;
 
-public class BootCompletedReceiver extends BroadcastReceiver {
+public class DcDimmingSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener {
 
-    private static final boolean DEBUG = false;
-    private static final String TAG = "XiaomiParts";
+    private SwitchPreference mDcDimmingPreference;
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
-    private static final String DISPPARAM_NODE = "/sys/class/drm/card0-DSI-1/disp_param";
+    private static final String DISPPARAM_NODE = "/sys/class/drm/card0/card0-DSI-1/disp_param";
 
     private static final String DISPPARAM_DC_ON = "0x40000";
     private static final String DISPPARAM_DC_OFF = "0x50000";
@@ -49,26 +42,31 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String BRIGHTNESS_NODE = "/sys/class/backlight/panel0-backlight/brightness";
 
     @Override
-    public void onReceive(final Context context, Intent intent) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        if (DEBUG)
-            Log.d(TAG, "Received boot completed intent");
-        try {
-            DiracUtils.getInstance(context);
-        } catch (Exception e) {
-            Log.d(TAG, "Dirac is not present in system");
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        addPreferencesFromResource(R.xml.dcdimming_settings);
+        mDcDimmingPreference = (SwitchPreference) findPreference(DC_DIMMING_ENABLE_KEY);
+        if (FileUtils.fileExists(DISPPARAM_NODE)) {
+            mDcDimmingPreference.setEnabled(true);
+            mDcDimmingPreference.setOnPreferenceChangeListener(this);
+        } else {
+            mDcDimmingPreference.setSummary(R.string.dc_dimming_enable_summary_not_supported);
+            mDcDimmingPreference.setEnabled(false);
         }
-        DozeUtils.checkDozeService(context);
-        ThermalUtils.startService(context);
-        RefreshUtils.startService(context);
-        FileUtils.enableService(context);
-
-        boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
-        setDcDimmingStatus(dcDimmingEnabled);
     }
 
-    void setDcDimmingStatus(boolean enabled) {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (DC_DIMMING_ENABLE_KEY.equals(preference.getKey())) {
+            if ((Boolean) newValue) {
+                setDcDimmingStatus(true);
+            } else {
+                setDcDimmingStatus(false);
+            }
+        }
+        return true;
+    }
+
+    private void setDcDimmingStatus(boolean enabled) {
         if (enabled) {
             FileUtils.writeLine(DISPPARAM_NODE, DISPPARAM_DC_ON);
             FileUtils.writeLine(DISPPARAM_NODE, DISPPARAM_DIMMING_OFF);
