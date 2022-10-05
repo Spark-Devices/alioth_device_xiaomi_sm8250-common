@@ -257,9 +257,6 @@ ro.vendor.perf-hal.ver=2.2
 ro.vendor.qspm.enable=true
 ro.vendor.perf.scroll_opt=true
 
-# Qualcomm System Daemon
-persist.vendor.qcomsysd.enabled=1
-
 # Radio
 persist.radio.NO_STAPA=1
 persist.radio.VT_HYBRID_ENABLE=1
