@@ -42,7 +42,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final boolean DEBUG = false;
     private static final String TAG = "XiaomiParts";
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
-    private static final String DC_DIMMING_NODE = "/sys/class/drm/card0-DSI-1/disp_param";
+    private static final String DC_DIMMING_NODE = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure";
 
     /* Double-tap */
     public static final String SHAREDD2TW = "sharadeD2TW";
@@ -81,6 +81,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         
         //Dc Dimming Support (requires kernel support)
         boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
-        FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "0x40000" : "0x50000");
+        FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
     }
 }
