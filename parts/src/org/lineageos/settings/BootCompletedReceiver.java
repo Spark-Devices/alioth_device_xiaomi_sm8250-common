@@ -33,6 +33,8 @@ import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 import org.lineageos.settings.utils.FileUtils;
 
+import vendor.xiaomi.hardware.touchfeature.V1_0.ITouchFeature;
+
 public class BootCompletedReceiver extends BroadcastReceiver {
 
     private static final boolean DEBUG = false;
@@ -47,6 +49,10 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String DISPPARAM_CRC_OFF = "0xF00000";
 
     private static final String BRIGHTNESS_NODE = "/sys/class/backlight/panel0-backlight/brightness";
+
+    /* Double-tap */
+    public static final String SHAREDD2TW = "sharadeD2TW";
+    private ITouchFeature mTouchFeature;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -63,6 +69,15 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         ThermalUtils.startService(context);
         RefreshUtils.startService(context);
         FileUtils.enableService(context);
+
+       //Micro-Service to restore sata of dt2w on reboot
+       SharedPreferences prefs = context.getSharedPreferences(SHAREDD2TW, Context.MODE_PRIVATE);
+       try {
+            mTouchFeature = ITouchFeature.getService();
+            mTouchFeature.setTouchMode(14,prefs.getInt(SHAREDD2TW, 1));
+            } catch (Exception e) {
+            // Do nothing
+        }
 
         boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
         setDcDimmingStatus(dcDimmingEnabled);
