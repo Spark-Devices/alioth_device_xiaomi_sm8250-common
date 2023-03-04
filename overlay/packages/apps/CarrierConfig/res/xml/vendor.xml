@@ -3323,6 +3323,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <int name="carrier_default_wfc_ims_mode_int" value="2"/>
         <boolean name="vonr_enabled_bool" value="true" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="carrier_vt_available_bool" value="true"/>
         <boolean name="editable_wfc_mode_bool" value="false"/>
         <boolean name="hide_wfc_mode_option" value="true"/>
         <boolean name="wos_flight_mode_support_bool" value="true"/>
@@ -3339,6 +3340,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <int name="carrier_default_wfc_ims_mode_int" value="2"/>
         <boolean name="vonr_enabled_bool" value="true" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="carrier_vt_available_bool" value="true"/>
         <boolean name="editable_wfc_mode_bool" value="false"/>
         <boolean name="hide_wfc_mode_option" value="true"/>
         <boolean name="wos_flight_mode_support_bool" value="true"/>
@@ -3348,6 +3350,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="vonr_enabled_bool" value="true" />
         <int name="carrier_default_wfc_ims_mode_int" value="2"/>
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="carrier_vt_available_bool" value="true"/>
         <boolean name="editable_wfc_mode_bool" value="false"/>
         <boolean name="hide_wfc_mode_option" value="true"/>
         <boolean name="carrier_name_override_bool" value="false"/>
@@ -3378,6 +3381,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="hide_wfc_mode_option" value="true"/>
         <boolean name="vonr_enabled_bool" value="true" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="carrier_vt_available_bool" value="true"/>
         <boolean name="mtk_carrier_wfc_get_location_always" value="true"/>
     </carrier_config>
     <carrier_config mcc="419" mnc="2">
