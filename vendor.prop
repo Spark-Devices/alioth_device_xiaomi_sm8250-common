@@ -254,9 +254,6 @@ vendor.power.pasr.enabled=false
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.perf-hal.ver=2.2
-ro.vendor.qspm.enable=true
-ro.vendor.perf.scroll_opt=true
 
 # Radio
 persist.radio.NO_STAPA=1

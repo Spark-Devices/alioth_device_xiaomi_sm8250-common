@@ -431,7 +431,4 @@
 
     <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
     <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/power_supply/bms/fastcharge_mode</string>
-    
-    <!-- QTI Boost Framework - AOSP Version -->
-    <bool name="config_supportsBoostFramework">true</bool>
 </resources>
