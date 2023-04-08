@@ -247,6 +247,9 @@ debug.stagefright.omx_default_rank=0
 # NFC
 ro.camera.notify_nfc=1
 
+# Camera
+persist.vendor.camera.logInfoMask=false
+
 # OTG
 persist.sys.oem.otg_support=true
 
