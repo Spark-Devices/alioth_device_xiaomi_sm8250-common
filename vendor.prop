@@ -229,6 +229,7 @@ debug.sf.enable_transaction_tracing=false
 debug.sf.hw=0
 debug.sf.auto_latch_unsignaled=true
 persist.demo.hdmirotationlock=false
+debug.sf.treat_170m_as_sRGB=1
 debug.sf.predict_hwc_composition_strategy=0
 debug.sf.disable_client_composition_cache=1
 ro.hardware.egl=adreno
