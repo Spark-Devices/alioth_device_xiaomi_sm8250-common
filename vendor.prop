@@ -252,6 +252,7 @@ ro.camera.notify_nfc=1
 
 # Camera
 persist.vendor.camera.logInfoMask=false
+persist.vendor.camera.perflock.enable=0
 
 # OTG
 persist.sys.oem.otg_support=true
