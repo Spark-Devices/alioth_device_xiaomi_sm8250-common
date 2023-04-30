@@ -231,6 +231,7 @@ debug.sf.disable_backpressure=1
 debug.sf.enable_transaction_tracing=false
 debug.sf.hw=1
 debug.sf.auto_latch_unsignaled=true
+debug.sf.latch_unsignaled=0
 persist.demo.hdmirotationlock=false
 debug.sf.treat_170m_as_sRGB=1
 debug.sf.predict_hwc_composition_strategy=0
