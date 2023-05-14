@@ -793,6 +793,15 @@ vendor/etc/init/init.mi_thermald.rc
 
 # Thermal config
 vendor/etc/perf/thermalboost.conf
+vendor/etc/thermal-4k.conf
+vendor/etc/thermal-8k.conf
+vendor/etc/thermal-chg-only.conf
+vendor/etc/thermal-hp-mgame.conf
+vendor/etc/thermal-hp-normal.conf
+vendor/etc/thermal-huanji.conf
+vendor/etc/thermal-per-huanji.conf
+vendor/etc/thermal-per-videochat.conf
+vendor/etc/thermal-videochat.conf
 vendor/etc/thermal-camera.conf
 vendor/etc/thermal-class0.conf
 vendor/etc/thermal-engine.conf
