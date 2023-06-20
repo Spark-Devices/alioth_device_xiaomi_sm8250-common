@@ -39,6 +39,9 @@ ro.vendor.soft_backlight.enable                u:object_r:vendor_displayfeature_
 ro.vendor.sre.enable                           u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.fod.110nit.lux.level                 u:object_r:vendor_displayfeature_prop:s0
 
+# Fastcharge HAL
+persist.vendor.sec.fastchg_enabled              u:object_r:vendor_fastcharge_prop:s0
+
 # Fingerprint
 persist.vendor.fpc.                             u:object_r:vendor_fingerprint_prop:s0
 persist.vendor.sys.fp.                          u:object_r:vendor_fingerprint_prop:s0
